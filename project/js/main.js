@@ -2,12 +2,22 @@ $(document).ready(function () {
     var currentFlopr = 2;
     let counterUp = $(".counter-up");
     let counterDown = $('.counter-down');
-    $('.home-image path').on('mouseover', function(){
+    let modal = $('.modal');
+    let floorPath = $('.home-image path');
+    let modalCloseBtn = $('.modal-close-btn')
+
+        floorPath.on('mouseover', function(){
         currentFlopr = $(this).attr('data-floar');
         $('.counter').text(currentFlopr);
-        $('.home-image path').removeClass("current-floor");
+        floorPath.removeClass("current-floor");
     });
 
+    floorPath.on('click', function(){
+        modal.toggleClass('is-open')
+    })
+    modalCloseBtn.on('click', function(){
+        modal.removeClass('is-open')
+    })
 
     counterUp.on('click', function(){
         if(currentFlopr < 18){
@@ -17,6 +27,7 @@ $(document).ready(function () {
        
         }
     })
+   
     counterDown.on('click', function(){
         if(currentFlopr > 2){
             currentFlopr--;
